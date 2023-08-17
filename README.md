@@ -1,62 +1,38 @@
-# Bitly URL shortener
+# Обрезка ссылок с помощью Битли
 
-Just a simple URL shortener with ability to check out shortened link clicks.
+Проект представляет из себе обрезание ссылок с помощью сервиса Битли, при этом,
+программа будет подсчитывать количество переходов по это обрезанной ссылке
 
-## Enviroment variables
+### Как установить
 
-Get token on [bitly](https://app.bitly.com/settings/integrations/) and use it in .env file as `BITLY_TOKEN=urtoken`. Then you can run it!
+Для использования репозитория вам потребуется:
+  1) сделать форк проекта
+  2) установить Python3 если он у вас не установлен
+  3) Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
+  ``` 
+  pip install -r requirements.txt 
+  ```
+  4) создать и заполнить файл .env:
+  ```
+  BITLY_TOKEN=ваш токен
+  ```
+### Как использовать
 
-## How to install
-
-Python3 should already be installed. Use pip (or pip3, if there is a conflict with Python2) to install dependencies:
-
+Для использования вам придётся написать в терминале:
 ```
-pip install -r requirements.txt
+python(или python3) main.py (ссылка или битлинк)
 ```
+Если вы указали обычную ссылку, то в терминал выведится битлинк,
+а если вы указали битлинк, то в терминал выведится количество кликов по нему
 
-## Run
-
-To run program on Windows OS you should use [this](https://www.wikihow.com/Use-Windows-Command-Prompt-to-Run-a-Python-File)
-
-To run program on Linux head to main.py file's directory and type:
-
+пример:
 ```
-python main.py {url}
+python main.py https://github.com/
 ```
-
-Depending on whether you give it shortened link or unshortened, it will:
-
-- give you shortened link clicks count
-- give shortened link
-
-If program will run into an error, it will print:
-
-- `Err while creating bitlink` if program was tring to shorten ur link
-- `Err while calculating clicks` if program war tring to count clicks
-
-## Notes
-
-Some info about all fuctions in code
-
-```py
-def is_bitlink()
+выведет:
 ```
-
-1. parses given link
-1. gets information about link
-1. returns `True` if link is shortened or `False` if link isn't  
-
-```py
-def count_clicks()
+Битлинк https://bit.ly/3osb522
 ```
+### Цель проекта
 
-1. parses link
-1. gets info about link and gets clicks_count from link info
-1. returns it. If func runs into an error while raising for status it'll print error message
-
-```py
-def shorten_link()
-```
-
-1. uses unshortened link and tries to short it
-1. raises for status, if successfully, gets link from response text and returns it
+Код написан в образовательных целях на онлайн-курсе для веб-разработчиков [dvmn.org](https://dvmn.org/).

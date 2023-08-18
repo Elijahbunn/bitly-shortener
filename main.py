@@ -59,16 +59,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Link shortener and clicks calculator'
         )
-    parser.add_argument('url', help='Enter link')
+    parser.add_argument('link_or_bitlink', help='link or bitlink')
     args = parser.parse_args()
-
-    if is_bitlink(args, token):
+    link = args.link_or_bitlink
         try:
-            print('clicked:', count_clicks(args, token), 'time(s)')
+            if is_bitlink(link, token):
+                print(count_clicks(link, token))
+            else:
+                print('Bitlink', shorten_link(link, token))
         except requests.exceptions.HTTPError:
-            print('Err while calculating clicks')
-    else:
-        try:
-            print('Bitlink:', shorten_link(args, token))
-        except requests.exceptions.HTTPError:
-            print('Err while creating bitlink')
+            print("You have entered an invalid affinity.")

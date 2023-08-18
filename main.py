@@ -60,15 +60,15 @@ if __name__ == '__main__':
         description='Link shortener and clicks calculator'
         )
     parser.add_argument('url', help='Enter link')
-    url = parser.parse_args()
+    args = parser.parse_args()
 
-    if is_bitlink(url, token):
+    if is_bitlink(args, token):
         try:
-            print('clicked:', count_clicks(url, token), 'time(s)')
+            print('clicked:', count_clicks(args, token), 'time(s)')
         except requests.exceptions.HTTPError:
             print('Err while calculating clicks')
     else:
         try:
-            print('Bitlink:', shorten_link(url, token))
+            print('Bitlink:', shorten_link(args, token))
         except requests.exceptions.HTTPError:
             print('Err while creating bitlink')
